@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: 20,
         textAlign: 'center',
-        textTransform: 'uppercase'
     },
     description: {
         fontWeight: '400',
@@ -160,7 +159,7 @@ export const DeckCard = props => {
         <View style={{top:100, zIndex:10}}>
             <View style={{marginRight:10, marginLeft:25}}>
                 <View style={[styles.cardHeader, {backgroundColor: props.category.lightColor}]}>
-                    <Text style={[styles.headerText, {color: props.category.darkColor}]}>{props.category.key}</Text>
+                    <Text style={[styles.headerText, {color: props.category.darkColor, textTransform: props.category.key === 'mbti' ? 'uppercase' : 'capitalize'}]}>{props.category.key}</Text>
                 </View>
                 <View style={styles.card}>
                     <Text style={[styles.description, {top: props.category.key === 'mbti' ? 50 : 70}]}>{props.category.message}</Text>
