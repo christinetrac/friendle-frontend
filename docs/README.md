@@ -20,7 +20,7 @@ Matching and hangout recommendation endpoint: [todo] -->
 You can make a POST request to our endpoint to get recommended quarantine activities anywhere, anytime 😊
 
 e.g.
-`curl  -d '{"username":"patrick-star","location":"toronto,ca","mbti":"entp","music":["folk"],"movies":["action"],"food":["sushi"]}' -H 'Content-Type: application/json' 'https://us-west2-uofthack21.cloudfunctions.net/simple-res'
+`curl  -d '{"username":"achoo2","location":"toronto,ca","mbti":"entp","music":["kpop"],"movies":["action"],"food":["sushi"]}' -H 'Content-Type: application/json' '	https://recgate-1g9rdgr6.uc.gateway.dev/rec'
 `
 
 ### Architecture
