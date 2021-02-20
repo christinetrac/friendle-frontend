@@ -90,34 +90,6 @@ const styles = StyleSheet.create({
 });
 
 export const DeckCard = props => {
-    const [mbti, setMbti] = useState('');
-    const [movies, setMovies] = useState([]);
-    const [music, setMusic] = useState([]);
-    const [games, setGames] = useState([]);
-    const [food, setFood] = useState([]);
-    const [overall, setOverall] = useState([]);
-
-    const handleMbti = (type) => {
-        setMbti(type);
-    };
-
-    const handleOther = (category, selected) => {
-        if(category.key === 'movies'){
-            let arr = movies.concat(selected);
-            setMovies(arr);
-        } else if (category.key === 'music') {
-            let arr = music.concat(selected);
-            setMusic(arr);
-        } else if (category.key === 'games') {
-            let arr = games.concat(selected);
-            setGames(arr);
-        } else { //food
-            let arr = food.concat(selected);
-            setFood(arr);
-        }
-        let overallArr = overall.concat(selected);
-        setOverall(overallArr);
-    };
 
     const mbtiCategories = () => {
         return (
@@ -136,8 +108,8 @@ export const DeckCard = props => {
     const mbtiButtons = (group) => {
         return (
             group.values.map( type => (
-                <TouchableOpacity onPress={() => handleMbti(type)} key={type} style={[styles.mbtiButton, {backgroundColor: mbti === type ? group.darkColour: group.lightColour}]}>
-                    <Text style={[{color:mbti === type ? group.lightColour:group.darkColour, textTransform:'uppercase', textAlign:'center', fontWeight:'500', fontSize:12, letterSpacing:0.3}]}>{type}</Text>
+                <TouchableOpacity onPress={() => props.handleMbti(type)} key={type} style={[styles.mbtiButton, {backgroundColor: props.mbti === type ? group.darkColour: group.lightColour}]}>
+                    <Text style={[{color:props.mbti === type ? group.lightColour:group.darkColour, textTransform:'uppercase', textAlign:'center', fontWeight:'500', fontSize:12, letterSpacing:0.3}]}>{type}</Text>
                 </TouchableOpacity>
                 )
             )
@@ -147,8 +119,8 @@ export const DeckCard = props => {
     const otherButton = () => {
         return (
             props.category.values.map( button => (
-                    <TouchableOpacity onPress={() => handleOther(props.category, button)} key={button} style={[styles.buttons, {backgroundColor: overall.includes(button) ? props.category.darkColor:props.category.lightColor}]}>
-                        <Text style={[styles.otherButtonsText, {color: overall.includes(button) ? props.category.lightColor:props.category.darkColor}]}>{button}</Text>
+                    <TouchableOpacity onPress={() => props.handleOther(props.category, button)} key={button} style={[styles.buttons, {backgroundColor: props.overall.includes(button) ? props.category.darkColor:props.category.lightColor}]}>
+                        <Text style={[styles.otherButtonsText, {color: props.overall.includes(button) ? props.category.lightColor:props.category.darkColor}]}>{button}</Text>
                     </TouchableOpacity>
                 )
             )

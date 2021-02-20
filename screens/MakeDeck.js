@@ -1,14 +1,51 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
-import { Icon } from 'react-native-elements'
 import { MBTI, GAMES, FOOD, MUSIC, MOVIES} from "../constants/constants";
 import {DeckCard} from "../components/DeckCard";
 import { LinearGradient } from 'expo-linear-gradient';
 
 export const MakeDeck = ({navigation}) => {
+    const [mbti, setMbti] = useState('');
+    const [movies, setMovies] = useState([]);
+    const [music, setMusic] = useState([]);
+    const [games, setGames] = useState([]);
+    const [food, setFood] = useState([]);
+    const [overall, setOverall] = useState([]);
+
+    const handleMbti = (type) => {
+        setMbti(type);
+    };
+
+    const handleOther = (category, selected) => {
+        if(category.key === 'movies'){
+            let arr = movies.concat(selected);
+            setMovies(arr);
+        } else if (category.key === 'music') {
+            let arr = music.concat(selected);
+            setMusic(arr);
+        } else if (category.key === 'games') {
+            let arr = games.concat(selected);
+            setGames(arr);
+        } else { //food
+            let arr = food.concat(selected);
+            setFood(arr);
+        }
+        let overallArr = overall.concat(selected);
+        setOverall(overallArr);
+    };
 
     const cards = [MBTI, MOVIES, MUSIC, GAMES, FOOD].map( category => (
-            <DeckCard key={category.key} category={category}/>
+            <DeckCard key={category.key}
+                      category={category}
+                      handleMbti={(type) => handleMbti(type)}
+                      handleOther={(category, select) => handleOther(category, select)}
+                      mbti={mbti}
+                      movies={movies}
+                      music={music}
+                      games={games}
+                      food={food}
+                      overall={overall}
+            />
         )
     );
 
