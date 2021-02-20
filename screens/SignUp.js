@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import { Icon } from 'react-native-elements'
+import { LinearGradient } from 'expo-linear-gradient';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 export const SignUp = ({navigation}) => {
@@ -16,6 +17,17 @@ export const SignUp = ({navigation}) => {
 
     return(
         <View style={styles.container}>
+            <LinearGradient
+                colors={['#FF9089', '#FFB877']}
+                style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    height: '100%',
+                    flex: 1,
+                }}
+            />
             <View style={styles.box}>
                 <TouchableOpacity onPress={() => {navigation.pop()}}>
                     <Image source={require('../assets/back.png')} style={styles.back}/>
@@ -88,7 +100,9 @@ const styles = StyleSheet.create({
     back: {
         position: 'absolute',
         top: 60,
-        left: 40
+        left: 40,
+        width:15,
+        height:20
     },
     title: {
         fontSize: 35,
@@ -96,6 +110,7 @@ const styles = StyleSheet.create({
         width: 280,
         position: 'absolute',
         left: 40,
+        color: '#515151'
     },
     personal: {
         position: 'absolute',
@@ -107,10 +122,11 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         letterSpacing: 0.8,
         left: 40,
-        paddingBottom: 14
+        paddingBottom: 14,
+        color: '#515151'
     },
     box: {
-        backgroundColor: '#ECECEC',
+        backgroundColor: 'rgba(255, 255, 255, 0.35)',
         width: 100 + '%',
         height: 715,
         borderTopLeftRadius: 40,

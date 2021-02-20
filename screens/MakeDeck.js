@@ -1,17 +1,42 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { Icon } from 'react-native-elements'
+import { MBTI, GAMES, FOOD, MUSIC, MOVIES} from "../constants/constants";
+import {DeckCard} from "../components/DeckCard";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const MakeDeck = ({navigation}) => {
 
+    const cards = [MBTI, MOVIES, MUSIC, GAMES, FOOD].map( category => (
+            <DeckCard key={category.key} category={category}/>
+        )
+    );
+
     return(
         <View style={styles.container}>
+            <LinearGradient
+                colors={['#FF9089', '#FFB877']}
+                style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    height: '100%',
+                    flex: 1,
+                    zIndex:-1
+                }}
+            />
             <TouchableOpacity onPress={() => {navigation.pop()}}>
                 <Image source={require('../assets/back.png')} style={styles.back}/>
             </TouchableOpacity>
             <View style={styles.box}>
                 <Text style={[styles.title, {top:40}]}>Develop your deck.</Text>
-                <Text style={styles.subtitle}>Build your deck and get matched with others with similar interests. </Text>
+                <Text style={styles.subtitle}>Build your deck and get matched with others with similar interests. Show off who you are! </Text>
+                <View style={{height: 600, width:370, position:'absolute', bottom:0, paddingLeft:0, paddingRight:0, alignSelf:'center'}}>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        {cards}
+                    </ScrollView>
+                </View>
                 <TouchableOpacity style={styles.saveButton}>
                     <Text style={styles.save}>Save</Text>
                 </TouchableOpacity>
@@ -23,12 +48,15 @@ export const MakeDeck = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
-        height: 100 + '%'
+        height: 100 + '%',
+        zIndex: -10
     },
     back: {
         position: 'absolute',
         top: 60,
-        left: 44
+        left: 40,
+        width:15,
+        height:20
     },
     title: {
         fontSize: 30,
@@ -36,6 +64,7 @@ const styles = StyleSheet.create({
         width: 160,
         position: 'absolute',
         left: 44,
+        color: '#515151'
     },
     subtitle: {
         width: 275,
@@ -44,16 +73,18 @@ const styles = StyleSheet.create({
         letterSpacing: 0.2,
         position: 'absolute',
         top: 130,
-        left: 44
+        left: 44,
+        color: '#515151'
     },
     box: {
-        backgroundColor: '#ECECEC',
+        backgroundColor: 'rgba(255, 255, 255, 0.35)',
         width: 90 + '%',
-        height: 760,
+        height: 700,
         borderRadius: 50,
-        position: 'absolute',
-        bottom: 20,
-        alignSelf: 'center'
+        position: 'relative',
+        marginTop: 150,
+        alignSelf: 'center',
+        zIndex: -1
     },
     saveButton: {
         alignSelf: 'center',
@@ -61,13 +92,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         bottom: 20,
         borderRadius: 22.5,
-        backgroundColor: '#BDBDBD',
+        backgroundColor: '#7775E1',
         width:139,
         height:45
     },
     save: {
         textAlign: 'center',
         fontSize: 20,
-        fontWeight: '600'
+        fontWeight: '600',
+        color: '#fff'
     }
 });

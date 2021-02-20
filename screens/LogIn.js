@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import { Icon } from 'react-native-elements'
+import { LinearGradient } from 'expo-linear-gradient';
 
 export const LogIn = ({navigation}) => {
     useEffect(()=> {
@@ -31,12 +32,23 @@ export const LogIn = ({navigation}) => {
 
     return(
         <View style={styles.container}>
-            <Text style={[styles.title, {top:90}]}>Welcome to Friendle.</Text>
+            <LinearGradient
+                colors={['#FF9089', '#FFB877']}
+                style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    height: '100%',
+                    flex: 1,
+                }}
+            />
+            <Text style={[styles.title, {top:90, color:'#fff'}]}>Welcome to Friendle.</Text>
             <View style={styles.box}>
                 <Text style={[styles.title, {top:50}]}>Sign In</Text>
                 <View style={styles.inputBox}>
                     <View style={[styles.icon, {top: 137}]}>
-                        <Icon name="alternate-email" size={16}/>
+                        <Icon name="alternate-email" size={16} color={'#AFAFAF'}/>
                     </View>
                     <TextInput
                         style={[styles.input, {top:127}]}
@@ -48,7 +60,7 @@ export const LogIn = ({navigation}) => {
                 </View>
                 <View style={styles.inputBox}>
                     <View style={[styles.icon, {top: 207}]}>
-                        <Icon name="lock" size={16}/>
+                        <Icon name="lock" size={16} color={'#AFAFAF'}/>
                     </View>
                     <TextInput
                         style={[styles.input, {top:197}]}
@@ -80,9 +92,10 @@ const styles = StyleSheet.create({
         width: 280,
         position: 'absolute',
         left: 40,
+        color: '#515151'
     },
     box: {
-        backgroundColor: '#ECECEC',
+        backgroundColor: 'rgba(255, 255, 255, 0.35)',
         width: 100 + '%',
         height: 470,
         borderTopLeftRadius: 40,
@@ -124,17 +137,19 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         textAlign: 'center',
         position: 'absolute',
-        bottom: 50
+        bottom: 50,
     },
     quest: {
         fontWeight: '600',
-        fontSize: 10
+        fontSize: 10,
+        color: '#515151'
     },
     link: {
         fontWeight: '600',
         fontSize: 12,
         textAlign: 'center',
         paddingTop: 4,
-        textDecorationLine: 'underline'
+        textDecorationLine: 'underline',
+        color: '#515151'
     }
 });
