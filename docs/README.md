@@ -12,12 +12,12 @@ We used React Native to build a native iOS app!
 ## Back-end
 
 ### Demo
-We have a publicly available API that you can use to match to one of our users in our database!
+We have a publicly available API that you can use to get hangout recommendations!
 
 <!-- Create User endpoint: [todo]
 Matching and hangout recommendation endpoint: [todo] -->
 
-You can make a POST request to our endpoint to get a match and recommended quarantine activities anywhere, anytime 😊
+You can make a POST request to our endpoint to get recommended quarantine activities anywhere, anytime 😊
 
 e.g.
 `curl  -d '{"username":"patrick-star","location":"toronto,ca","mbti":"entp","music":["folk"],"movies":["action"],"food":["sushi"]}' -H 'Content-Type: application/json' 'https://us-west2-uofthack21.cloudfunctions.net/simple-res'
@@ -25,6 +25,7 @@ e.g.
 
 ### Architecture
 ![arch diagram](uofthacks-backend.jpg)
+
 We chose to use a serverless framework that scales automatically: Google Cloud Functions. We hosted our API (written in Python3) and integrated Firebase to persist user information for later retrieval. 
 
 ### Algorithm
