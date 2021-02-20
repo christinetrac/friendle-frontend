@@ -78,9 +78,13 @@ export const ProfileDeck = props => {
         )
     };
 
-    console.log(props.category.value);
-
     const mbti = () => {
+        return (
+            <View style={{textAlign:'center', alignSelf:'center', top:80, position:'absolute'}}>
+                <Text style={{textAlign:'center', color: '#515151', fontSize:20, fontWeight:'600', marginBottom:10}}>INTJ</Text>
+                <Text style={{textAlign:'center', color: '#515151', fontSize:12, fontWeight:'600'}}>The Architect</Text>
+            </View>
+        )
     };
 
     return (
