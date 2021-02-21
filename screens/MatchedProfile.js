@@ -6,9 +6,9 @@ import {Icon} from "react-native-elements";
 import {ProfileDeck} from "../components/ProfileDeck";
 
 export const MatchedProfile = ({navigation, route}) => {
-    const match = route?.params?.match;
-    const matchProfile = route?.params?.matchProfile;
-    const hangout = route?.params?.hangout;
+    const buddy = route?.params?.buddy;
+    const matchProfile = buddy.match_profile;
+    const hangout = buddy.hangout;
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export const MatchedProfile = ({navigation, route}) => {
     };
 
     const genderIcon = () => {
-        if(matchProfile?.gender === 'Male'){
+        if(matchProfile?.gender === 'male'){
             return (
                 <Icon name='male' type='ionicon' color={'#fff'} size={11}/>
             )
@@ -104,7 +104,7 @@ export const MatchedProfile = ({navigation, route}) => {
                 <TouchableOpacity onPress={() => {navigation.pop()}}>
                     <Image source={require('../assets/back.png')} style={styles.back}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.start} onPress={() => navigation.navigate('Hangout')}>
+                <TouchableOpacity style={styles.start} onPress={() => navigation.navigate('Hangout', {hangout:hangout})}>
                     <Text style={styles.startText}>View Hangout</Text>
                     <Image source={require('../assets/start.png')} style={styles.startArrow}/>
                 </TouchableOpacity>

@@ -6,6 +6,8 @@ import { WebView } from 'react-native-webview';
 import {Icon} from "react-native-elements";
 
 export const Hangout = ({navigation, route}) => {
+    const hangout = route?.params?.hangout;
+
     return(
             <View style={styles.container}>
                 <Image source={require('../assets/banner.png')} style={styles.banner} imageStyle={{opacity:0.5}}/>
@@ -47,7 +49,7 @@ export const Hangout = ({navigation, route}) => {
                             <View style={{marginRight:10, marginLeft:25, flexDirection:'row'}}>
                                 <View style={[styles.card, {backgroundColor:'#FFFEF0'}]}>
                                     <View style={[styles.badge, {backgroundColor: MUSIC.lightColor}]}>
-                                        <Text style={[styles.badgeText, {color: MUSIC.darkColor}]}>Pop</Text>
+                                        <Text style={[styles.badgeText, {color: MUSIC.darkColor}]}>{hangout.playlist.genre}</Text>
                                     </View>
                                     <Text style={styles.brand}>Spotify</Text>
                                     <Text style={styles.info}>Achoo and Jacob’s Playlist</Text>
@@ -59,24 +61,24 @@ export const Hangout = ({navigation, route}) => {
                                 </View>
                                 <View style={[styles.card, {backgroundColor:'#F6FFF7'}]}>
                                     <View style={[styles.badge, {backgroundColor: MOVIES.lightColor}]}>
-                                        <Text style={[styles.badgeText, {color: MOVIES.darkColor}]}>Action</Text>
+                                        <Text style={[styles.badgeText, {color: MOVIES.darkColor}]}>{hangout.movie.genre}</Text>
                                     </View>
                                     <Text style={styles.brand}>IMDB</Text>
                                     <Text style={styles.info}>Recommended movie for your tastes</Text>
                                     <Image source={require('../assets/moviePoster.png')} style={styles.poster}/>
                                     <View style={[styles.bottom, {backgroundColor: MOVIES.lightColor}]}>
-                                        <Text style={[styles.bottomText, {color: MOVIES.darkColor}]}>Wonder Woman 1984</Text>
+                                        <Text style={[styles.bottomText, {color: MOVIES.darkColor}]}>{hangout.movie.title}</Text>
                                     </View>
                                 </View>
                                 <View style={[styles.card, {backgroundColor:'#F6FAFF'}]}>
                                     <View style={[styles.badge, {backgroundColor: FOOD.lightColor}]}>
-                                        <Text style={[styles.badgeText, {color: FOOD.darkColor}]}>French</Text>
+                                        <Text style={[styles.badgeText, {color: FOOD.darkColor}]}>{hangout.food.genre}</Text>
                                     </View>
                                     <Text style={styles.brand}>Yelp</Text>
                                     <Text style={styles.info}>Recommended restaurants for you </Text>
                                     <Image source={require('../assets/foodPoster.jpg')} style={styles.poster}/>
                                     <View style={[styles.bottom, {backgroundColor: FOOD.lightColor}]}>
-                                        <Text style={[styles.bottomText, {color: FOOD.darkColor}]}>Muncheez</Text>
+                                        <Text style={[styles.bottomText, {color: FOOD.darkColor}]}>{hangout.food.restaurant}</Text>
                                         <View style={{flexDirection:'row', alignSelf:'center'}}>
                                             <View style={{marginTop:6}}>
                                                 <Icon name={'location-on'} size={13} color={'#FF6D6D'}/>
@@ -90,7 +92,7 @@ export const Hangout = ({navigation, route}) => {
                                     <Text style={styles.info}>A game that might suit your interests</Text>
                                     <Image source={require('../assets/gamePoster.png')} style={styles.poster}/>
                                     <View style={[styles.bottom, {backgroundColor: GAMES.lightColor}]}>
-                                        <Text style={[styles.bottomText, {color: GAMES.darkColor}]}>Minecraft</Text>
+                                        <Text style={[styles.bottomText, {color: GAMES.darkColor}]}>{hangout.game.name}</Text>
                                     </View>
                                 </View>
                             </View>

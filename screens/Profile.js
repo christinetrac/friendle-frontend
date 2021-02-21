@@ -9,7 +9,6 @@ export const Profile = ({navigation, route}) => {
     const profile = route?.params?.profile;
     const deck = route?.params?.deck;
     const [match, setMatch] = useState(null);
-    console.log(match);
 
     useEffect(() => {
         fetch('https://us-east4-uofthacks-matching.cloudfunctions.net/getMatches', {
@@ -28,49 +27,12 @@ export const Profile = ({navigation, route}) => {
             })
         })
             .then(response => response.json())
-            .then(json => console.log(json))
-            .then(json => setMatch(JSON.stringify(json)))
+            .then(json => setMatch(json))
             .catch(err => {
                 console.log(err.name);
                 console.log(err.message);
             });
     });
-
-    const hangout = {
-        food: {
-            genre: "french",
-            phone: "+1 905-597-1220",
-            restaurant: "Muncheez",
-            url: "https://www.yelp.com/biz/muncheez-north-york-4?adj…business_search&utm_source=Mg3QqHW3927xd7BPBfkq3w"
-        },
-        game: {
-            name: "Minecraft"
-        },
-        movie: {
-            genre: "action",
-            rating: 3,
-            summary: "Wonder Woman comes into conflict with the Soviet U…inds a formidable foe by the name of the Cheetah.",
-            title: "Wonder Woman 1984"
-        },
-        playlist: {
-            genre: "anime",
-            spotify_uri: "spotify:playlist:1YA5cPIfDy3L03bGnNiDM7"
-        }
-    };
-
-    const matchProfile = {
-        age: 24,
-        first_name: "Achoo",
-        food: ["American", "French"],
-        games: ["League of Legends", "GTA V", "Valorant"],
-        gender: "Male",
-        last_name: "Hamtaro",
-        loc_preference: "virtual",
-        location: "Toronto, Canada",
-        mbti: "INTJ",
-        movies: ["Action", "Romance", "Sci-Fi"],
-        music: ["Anime", "K-Pop", "Hip-Hop"],
-    };
 
     const genderIcon = () => {
         if(profile.gender === 'Male'){
@@ -134,14 +96,8 @@ export const Profile = ({navigation, route}) => {
         )
     );
 
-    const delay = ms => new Promise(res => setTimeout(res, ms));
-
-    const yourFunction = async () => {
-        await delay(5000);
-    };
-
     const handleMatch = () => {
-        navigation.navigate('MatchedProfile', {match:match, hangout:hangout, matchProfile: matchProfile});
+        navigation.navigate('MatchedProfile', {buddy:match});
     };
 
     return(
