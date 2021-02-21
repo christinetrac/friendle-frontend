@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/datetimepicker": "3.0.4",
+    "@react-native-picker/picker": "1.9.2",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
     "expo": "~40.0.0",
@@ -23,8 +24,10 @@
     "react-native-keyboard-aware-scrollview": "^2.1.0",
     "react-native-modal-datetime-picker": "^9.1.0",
     "react-native-picker-select": "^8.0.4",
+    "react-native-screen": "^1.0.1",
+    "react-native-screens": "^2.17.1",
     "react-native-web": "~0.13.12",
-    "@react-native-picker/picker": "1.9.2"
+    "react-native-webview": "^11.2.3"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

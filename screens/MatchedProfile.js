@@ -5,75 +5,25 @@ import { LinearGradient } from 'expo-linear-gradient';
 import {Icon} from "react-native-elements";
 import {ProfileDeck} from "../components/ProfileDeck";
 
-export const Profile = ({navigation, route}) => {
-    const profile = route?.params?.profile;
-    const deck = route?.params?.deck;
-    const [match, setMatch] = useState(null);
-    console.log(match);
+export const MatchedProfile = ({navigation, route}) => {
+    const match = route?.params?.match;
+    const matchProfile = route?.params?.matchProfile;
+    const hangout = route?.params?.hangout;
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch('https://us-east4-uofthacks-matching.cloudfunctions.net/getMatches', {
-            method: "post",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "username": profile.firstName,
-                "location": profile.location,
-                "mbti": deck.mbti,
-                "music": deck.music,
-                "movies": deck.movies,
-                "food": deck.food
-            })
-        })
-            .then(response => response.json())
-            .then(json => console.log(json))
-            .then(json => setMatch(JSON.stringify(json)))
-            .catch(err => {
-                console.log(err.name);
-                console.log(err.message);
-            });
-    });
+        yourFunction().then();
+    },[]);
 
-    const hangout = {
-        food: {
-            genre: "french",
-            phone: "+1 905-597-1220",
-            restaurant: "Muncheez",
-            url: "https://www.yelp.com/biz/muncheez-north-york-4?adj…business_search&utm_source=Mg3QqHW3927xd7BPBfkq3w"
-        },
-        game: {
-            name: "Minecraft"
-        },
-        movie: {
-            genre: "action",
-            rating: 3,
-            summary: "Wonder Woman comes into conflict with the Soviet U…inds a formidable foe by the name of the Cheetah.",
-            title: "Wonder Woman 1984"
-        },
-        playlist: {
-            genre: "anime",
-            spotify_uri: "spotify:playlist:1YA5cPIfDy3L03bGnNiDM7"
-        }
-    };
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
-    const matchProfile = {
-        age: 24,
-        first_name: "Achoo",
-        food: ["American", "French"],
-        games: ["League of Legends", "GTA V", "Valorant"],
-        gender: "Male",
-        last_name: "Hamtaro",
-        loc_preference: "virtual",
-        location: "Toronto, Canada",
-        mbti: "INTJ",
-        movies: ["Action", "Romance", "Sci-Fi"],
-        music: ["Anime", "K-Pop", "Hip-Hop"],
+    const yourFunction = async () => {
+        await delay(5000);
+        setLoading(true);
     };
 
     const genderIcon = () => {
-        if(profile.gender === 'Male'){
+        if(matchProfile?.gender === 'Male'){
             return (
                 <Icon name='male' type='ionicon' color={'#fff'} size={11}/>
             )
@@ -87,7 +37,7 @@ export const Profile = ({navigation, route}) => {
     const info = [
         {
             key: 'mbti',
-            value: deck.mbti,
+            value: matchProfile?.mbti,
             lightColor: MBTI.lightColor,
             darkColor: MBTI.darkColor,
             cardColor: '#F7FFFE',
@@ -95,58 +45,49 @@ export const Profile = ({navigation, route}) => {
         },
         {
             key: 'movies',
-            value: deck.movies,
+            value: matchProfile?.movies,
             lightColor: MOVIES.lightColor,
             darkColor: MOVIES.darkColor,
             cardColor: '#F7FFF7',
-            file: require('../assets/movie.png')
+            file: require('../assets/intj.png')
         },
         {
             key: 'music',
-            value: deck.music,
+            value: matchProfile?.music,
             lightColor: MUSIC.lightColor,
             darkColor: MUSIC.darkColor,
             cardColor: '#FFFEF0',
-            file: require('../assets/music.png')
+            file: require('../assets/intj.png')
         },
         {
             key: 'games',
-            value: deck.games,
+            value: matchProfile?.games,
             lightColor: GAMES.lightColor,
             darkColor: GAMES.darkColor,
             cardColor: '#FCF7FF',
-            file: require('../assets/gaming.png')
+            file: require('../assets/intj.png')
         },
         {
             key: 'food',
-            value: deck.food,
+            value: matchProfile?.food,
             lightColor: FOOD.lightColor,
             darkColor: FOOD.darkColor,
             cardColor: '#F7FAFF',
-            file: require('../assets/food.png')
+            file: require('../assets/intj.png')
         }
     ];
 
-    const cards = info.map( category => (
+    const cards = info?.map( category => (
             <ProfileDeck key={category.key}
-                      category={category}
+                         category={category}
             />
         )
     );
 
-    const delay = ms => new Promise(res => setTimeout(res, ms));
-
-    const yourFunction = async () => {
-        await delay(5000);
-    };
-
-    const handleMatch = () => {
-        navigation.navigate('MatchedProfile', {match:match, hangout:hangout, matchProfile: matchProfile});
-    };
-
     return(
+        loading ? (
         <View style={styles.container}>
-            <Image source={require('../assets/banner.png')} style={styles.banner} imageStyle={{opacity:0.5}}/>
+            <Image source={require('../assets/banner.png')} style={styles.banner}/>
             <LinearGradient
                 colors={['#C6F4F2', '#C8C7FF']}
                 style={{
@@ -160,40 +101,43 @@ export const Profile = ({navigation, route}) => {
                 }}
             />
             <ScrollView>
-                <TouchableOpacity style={styles.start} onPress={() => handleMatch()}>
-                    <Text style={styles.startText}>Start Matching</Text>
+                <TouchableOpacity onPress={() => {navigation.pop()}}>
+                    <Image source={require('../assets/back.png')} style={styles.back}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.start} onPress={() => navigation.navigate('Hangout')}>
+                    <Text style={styles.startText}>View Hangout</Text>
                     <Image source={require('../assets/start.png')} style={styles.startArrow}/>
                 </TouchableOpacity>
                 <View style={styles.box1}>
-                    <Image source={require('../assets/profile.jpg')} style={styles.pic}/>
-                    <Text style={styles.name}>{profile.firstName} {profile.lastName}</Text>
-                    <Text style={styles.location}>{profile.location}</Text>
+                    <Image source={require('../assets/match.jpg')} style={styles.pic}/>
+                    <Text style={styles.name}>{matchProfile?.first_name} {matchProfile?.last_name}</Text>
+                    <Text style={styles.location}>{matchProfile?.location}</Text>
                     <View style={styles.badgeBox}>
                         <View style={[styles.badge, {backgroundColor:'#70D0DD', flexDirection:'row', justifyContent:'center', width:60}]}>
                             <View style={{marginTop:4, paddingRight:3}}>
                                 {genderIcon()}
                             </View>
-                            <Text style={[styles.badgeText, {marginTop:3}]}>{profile.age}</Text>
+                            <Text style={[styles.badgeText, {marginTop:3}]}>{matchProfile?.age}</Text>
                         </View>
                         <View style={[styles.badge, {backgroundColor:'#9EC2B8'}]}>
-                            <Text style={styles.badgeText}>{profile.meetup}</Text>
+                            <Text style={styles.badgeText}>{matchProfile?.loc_preference}</Text>
                         </View>
                     </View>
                     <View style={styles.tagLayout}>
                         <View style={[styles.tag, {backgroundColor: MUSIC.lightColor}]}>
-                            <Text style={[styles.tagText, {color: MUSIC.darkColor}]}>{deck.music[0]}</Text>
+                            <Text style={[styles.tagText, {color: MUSIC.darkColor}]}>{matchProfile?.music[0]}</Text>
                         </View>
                         <View style={[styles.tag, {backgroundColor: MOVIES.lightColor}]}>
-                            <Text style={[styles.tagText, {color: MOVIES.darkColor}]}>{deck.movies[0]}</Text>
+                            <Text style={[styles.tagText, {color: MOVIES.darkColor}]}>{matchProfile?.movies[0]}</Text>
                         </View>
                         <View style={[styles.tag, {backgroundColor: GAMES.lightColor}]}>
-                            <Text style={[styles.tagText, {color: GAMES.darkColor}]}>{deck.games[0]}</Text>
+                            <Text style={[styles.tagText, {color: GAMES.darkColor}]}>{matchProfile?.games[0]}</Text>
                         </View>
                     </View>
                 </View>
                 <View style={styles.box2}>
                     <View style={styles.yourDeck}>
-                        <Text style={styles.yourDeckText}>{profile.firstName}'s Deck</Text>
+                        <Text style={styles.yourDeckText}>{matchProfile?.first_name}'s Deck</Text>
                     </View>
                     <View style={{height: 400, width:360, position:'absolute', bottom:0, paddingLeft:0, paddingRight:0, alignSelf:'center'}}>
                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -203,6 +147,24 @@ export const Profile = ({navigation, route}) => {
                 </View>
             </ScrollView>
         </View>
+        ):(
+            <View style={styles.container}>
+                <Image source={require('../assets/loading.gif')} style={styles.loading}/>
+                <Text style={styles.loadingText}>Finding a Buddy...</Text>
+                <LinearGradient
+                    colors={['#FF9089', '#FFB877']}
+                    style={{
+                        position: 'absolute',
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        height: '100%',
+                        flex: 1,
+                        zIndex:-1
+                    }}
+                />
+            </View>
+        )
     );
 };
 
@@ -211,11 +173,34 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: 100 + '%',
     },
+    loading: {
+        position:'absolute',
+        top:10,
+        width:381,
+        height:785,
+        alignSelf:'center'
+    },
+    loadingText:{
+        fontWeight:'600',
+        fontSize:25,
+        textAlign:'center',
+        position:'absolute',
+        bottom:262,
+        alignSelf:'center',
+        color:'#fff'
+    },
     banner: {
         position:'absolute',
         top:20,
         height:173,
         width:410
+    },
+    back: {
+        position: 'absolute',
+        top: 60,
+        left: 40,
+        width:15,
+        height:20
     },
     start: {
         position: 'absolute',

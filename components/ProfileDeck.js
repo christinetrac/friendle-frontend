@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     otherButtonLayout: {
-        width:220,
+        width:210,
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         zIndex:5,
         position: 'absolute',
-        top:30
+        top:50
     },
     buttons: {
         paddingTop:8,
@@ -62,14 +62,16 @@ const styles = StyleSheet.create({
     },
     icon: {
         alignSelf: 'center',
-        top:30
+        top:0,
+        height:256,
+        width:256
     }
 });
 
 export const ProfileDeck = props => {
     const tags = () => {
         return (
-            props.category.value.map( element => (
+            props?.category?.value?.map( element => (
                 <View key={element} style={[styles.buttons, {backgroundColor: props.category.darkColor}]}>
                     <Text style={[styles.otherButtonsText, {color: props.category.lightColor}]}>{element}</Text>
                 </View>

@@ -58,6 +58,7 @@ export const SignUp = ({navigation}) => {
                 }}
             />
             <Image source={require('../assets/banner.png')} style={styles.banner} imageStyle={{opacity:0.5}}/>
+            <Image source={require('../assets/signup.png')} style={styles.buddy}/>
             <View style={styles.box}>
                 <TouchableOpacity onPress={() => {navigation.pop()}}>
                     <Image source={require('../assets/back.png')} style={styles.back}/>
@@ -133,12 +134,14 @@ export const SignUp = ({navigation}) => {
                         style={[styles.input1]}
                         onChangeText={text => setPassword(text)}
                         value={password}
+                        secureTextEntry={true}
                         placeholder={'Password'}
                     />
                     <TextInput
                         style={[styles.input1]}
                         onChangeText={text => setConfirmPassword(text)}
                         value={confirmPassword}
+                        secureTextEntry={true}
                         placeholder={'Confirm Password'}
                     />
                 </View>
@@ -160,6 +163,13 @@ const styles = StyleSheet.create({
         top:20,
         height:173,
         width:410
+    },
+    buddy: {
+        position:'absolute',
+        top:120,
+        right:-45,
+        height:315,
+        width:315
     },
     back: {
         position: 'absolute',

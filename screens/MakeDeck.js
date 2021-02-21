@@ -37,6 +37,36 @@ export const MakeDeck = ({navigation, route}) => {
     };
 
     const handleSave = () => {
+        fetch('https://us-central1-uofthacks-matching.cloudfunctions.net/createUser', {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "username": profile.firstName,
+                "profile": {
+                    "first_name": profile.firstName,
+                    "last_name": profile.lastName,
+                    "gender": profile.gender,
+                    "age": profile.age,
+                    "mbti": mbti,
+                    "location": profile.location,
+                    "loc_preference": profile.meetup,
+                    "movies": movies,
+                    "music": music,
+                    "food": food,
+                    "games": games
+                }
+            })
+        })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => {
+                console.log(err.name);
+                console.log(err.message);
+            });
+
         const deck = {
             mbti: mbti,
             movies: movies,

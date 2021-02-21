@@ -4,6 +4,8 @@ import { LogIn } from "../screens/LogIn";
 import { SignUp } from "../screens/SignUp";
 import { MakeDeck } from "../screens/MakeDeck";
 import { Profile } from "../screens/Profile";
+import { MatchedProfile } from "../screens/MatchedProfile";
+import { Hangout } from "../screens/Hangout";
 
 const Stack = createStackNavigator();
 
@@ -36,6 +38,24 @@ const SignUpNavigation = (props) => {
                               gesturesEnabled: false
                           }}/>
             <Stack.Screen name="Profile" component={Profile}
+                          options={{
+                              title: null,
+                              headerStyle: {
+                                  height: 0
+                              },
+                              headerLeft: null,
+                              gesturesEnabled: false
+                          }}/>
+            <Stack.Screen name="MatchedProfile" component={MatchedProfile}
+                          options={{
+                              title: null,
+                              headerStyle: {
+                                  height: 0
+                              },
+                              headerLeft: null,
+                              gesturesEnabled: false
+                          }}/>
+            <Stack.Screen name="Hangout" component={Hangout}
                           options={{
                               title: null,
                               headerStyle: {

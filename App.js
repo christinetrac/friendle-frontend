@@ -9,9 +9,9 @@ export default function App() {
   let authenticated = false;
 
   const navigation = authenticated ? (
-        <HomeNavigation/>
+        <HomeNavigation persistenceKey="1"/>
   ) : (
-        <SignUpNavigation/>
+        <SignUpNavigation persistenceKey="1"/>
   );
 
   return (
