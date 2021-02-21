@@ -9,6 +9,7 @@ export const MatchedProfile = ({navigation, route}) => {
     const buddy = route?.params?.buddy;
     const matchProfile = buddy.match_profile;
     const hangout = buddy.hangout;
+    const profile = route?.params?.profile;
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -104,7 +105,7 @@ export const MatchedProfile = ({navigation, route}) => {
                 <TouchableOpacity onPress={() => {navigation.pop()}}>
                     <Image source={require('../assets/back.png')} style={styles.back}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.start} onPress={() => navigation.navigate('Hangout', {hangout:hangout})}>
+                <TouchableOpacity style={styles.start} onPress={() => navigation.navigate('Hangout', {hangout:hangout, profile:profile, matchProfile:matchProfile})}>
                     <Text style={styles.startText}>View Hangout</Text>
                     <Image source={require('../assets/start.png')} style={styles.startArrow}/>
                 </TouchableOpacity>

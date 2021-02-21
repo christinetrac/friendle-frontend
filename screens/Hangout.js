@@ -7,6 +7,8 @@ import {Icon} from "react-native-elements";
 
 export const Hangout = ({navigation, route}) => {
     const hangout = route?.params?.hangout;
+    const matchProfile = route?.params?.matchProfile;
+    const profile = route?.params?.profile;
 
     return(
             <View style={styles.container}>
@@ -30,17 +32,17 @@ export const Hangout = ({navigation, route}) => {
                     <View style={[styles.virtual, {backgroundColor:'#9EC2B8'}]}>
                         <Text style={styles.virtualText}>Virtual</Text>
                     </View>
-                    <Text style={[styles.title, {top:71}]}>Achoo and Jacob's Hangout</Text>
+                    <Text style={[styles.title, {top:71}]}>{matchProfile?.first_name} and {profile?.firstName}'s Hangout</Text>
                     <Text style={styles.subtitle}>We’ve generated a hangout session for you and your new friend. </Text>
                     <Text style={[styles.label, {top:195}]}>Buddies</Text>
                     <View style={styles.tagBox}>
                         <View style={styles.tag}>
                             <View style={[styles.circle, {backgroundColor:'#56BCB6'}]}/>
-                            <Text style={styles.tagText}>Achoo #7382</Text>
+                            <Text style={styles.tagText}>{matchProfile?.first_name} #7382</Text>
                         </View>
                         <View style={styles.tag}>
                             <View style={[styles.circle, {backgroundColor:'#EFAD2C'}]}/>
-                            <Text style={styles.tagText}>Jacub #2381</Text>
+                            <Text style={styles.tagText}>{profile?.firstName} #2381</Text>
                         </View>
                     </View>
                     <Text style={[styles.label, {top:286}]}>Hangout Reccomendations</Text>

@@ -97,7 +97,7 @@ export const Profile = ({navigation, route}) => {
     );
 
     const handleMatch = () => {
-        navigation.navigate('MatchedProfile', {buddy:match});
+        navigation.navigate('MatchedProfile', {buddy:match, profile:profile});
     };
 
     return(
