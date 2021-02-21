@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { LogIn } from "../screens/LogIn";
 import { SignUp } from "../screens/SignUp";
 import { MakeDeck } from "../screens/MakeDeck";
+import { Profile } from "../screens/Profile";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,15 @@ const SignUpNavigation = (props) => {
                               gesturesEnabled: false
                           }}/>
             <Stack.Screen name="MakeDeck" component={MakeDeck}
+                          options={{
+                              title: null,
+                              headerStyle: {
+                                  height: 0
+                              },
+                              headerLeft: null,
+                              gesturesEnabled: false
+                          }}/>
+            <Stack.Screen name="Profile" component={Profile}
                           options={{
                               title: null,
                               headerStyle: {

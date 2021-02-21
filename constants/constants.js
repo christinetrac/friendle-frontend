@@ -73,14 +73,14 @@ const MUSIC = {
 const GAMES = {
     key: 'games',
     message: 'Select up to three.',
-    darkColor: '#A26565',
-    lightColor: '#F4C6C6',
+    darkColor: '#9965A2',
+    lightColor: '#EEC6F4',
     values:[
     'apex legends',
     'call of duty',
     'cs:go',
     'dota 2',
-    'fornte',
+    'fortnite',
     'genshin impact',
     'gta v',
     'league of legends',
@@ -93,8 +93,8 @@ const GAMES = {
 const FOOD = {
     key: 'food',
     message: 'Select up to three.',
-    darkColor: '#9965A2',
-    lightColor: '#EEC6F4',
+    darkColor: '#637590',
+    lightColor: '#C6D8F4',
     values:[
     'american',
     'asian fusion',

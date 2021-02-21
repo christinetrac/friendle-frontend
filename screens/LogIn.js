@@ -5,26 +5,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 export const LogIn = ({navigation}) => {
     useEffect(()=> {
-        fetch('https://us-east4-uofthacks-matching.cloudfunctions.net/getMatches', {
-            method: "post",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "username": "achoo",
-                "mbti": "intj",
-                "music": ["folk", "classical"],
-                "movies": ["action"],
-                "food": ["american"],
-            })
-        })
-            .then(response => response.json())
-            .then(json => console.log(json))
-            .catch(err => {
-                console.log(err.name);
-                console.log(err.message);
-            })
     }, []);
 
     const [email, setEmail] = useState('');
@@ -43,6 +23,8 @@ export const LogIn = ({navigation}) => {
                     flex: 1,
                 }}
             />
+            <Image source={require('../assets/homeCorner.png')} style={styles.banner}/>
+            <Image source={require('../assets/homeBuddy.png')} style={styles.drawing}/>
             <Text style={[styles.title, {top:90, color:'#fff'}]}>Welcome to Friendle.</Text>
             <View style={styles.box}>
                 <Text style={[styles.title, {top:50}]}>Sign In</Text>
@@ -85,6 +67,20 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         height: 100 + '%'
+    },
+    banner: {
+        position:'absolute',
+        top:0,
+        left:0,
+        height:300,
+        width:420
+    },
+    drawing: {
+        position:'absolute',
+        top:110,
+        right:-20,
+        height:370,
+        width:370
     },
     title: {
         fontSize: 35,

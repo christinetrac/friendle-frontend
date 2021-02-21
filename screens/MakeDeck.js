@@ -4,7 +4,9 @@ import { MBTI, GAMES, FOOD, MUSIC, MOVIES} from "../constants/constants";
 import {DeckCard} from "../components/DeckCard";
 import { LinearGradient } from 'expo-linear-gradient';
 
-export const MakeDeck = ({navigation}) => {
+export const MakeDeck = ({navigation, route}) => {
+    const profile = route?.params?.profile;
+
     const [mbti, setMbti] = useState('');
     const [movies, setMovies] = useState([]);
     const [music, setMusic] = useState([]);
@@ -34,6 +36,17 @@ export const MakeDeck = ({navigation}) => {
         setOverall(overallArr);
     };
 
+    const handleSave = () => {
+        const deck = {
+            mbti: mbti,
+            movies: movies,
+            music: music,
+            games: games,
+            food: food
+        };
+        navigation.navigate('Profile', {profile:profile, deck:deck});
+    };
+
     const cards = [MBTI, MOVIES, MUSIC, GAMES, FOOD].map( category => (
             <DeckCard key={category.key}
                       category={category}
@@ -51,6 +64,8 @@ export const MakeDeck = ({navigation}) => {
 
     return(
         <View style={styles.container}>
+            <Image source={require('../assets/banner.png')} style={styles.banner}/>
+            <Image source={require('../assets/deckBuddy.png')} style={styles.buddy} imageStyle={{opacity:0.5}}/>
             <LinearGradient
                 colors={['#FF9089', '#FFB877']}
                 style={{
@@ -74,7 +89,7 @@ export const MakeDeck = ({navigation}) => {
                         {cards}
                     </ScrollView>
                 </View>
-                <TouchableOpacity style={styles.saveButton}>
+                <TouchableOpacity style={styles.saveButton} onPress={() => handleSave()}>
                     <Text style={styles.save}>Save</Text>
                 </TouchableOpacity>
             </View>
@@ -87,6 +102,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: 100 + '%',
         zIndex: -10
+    },
+    banner: {
+        position:'absolute',
+        top:39,
+        height:173,
+        width:410
+    },
+    buddy: {
+        position:'absolute',
+        top:80,
+        right:20,
+        height:282,
+        width:159
     },
     back: {
         position: 'absolute',
