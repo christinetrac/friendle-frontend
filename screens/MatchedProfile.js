@@ -50,7 +50,7 @@ export const MatchedProfile = ({navigation, route}) => {
             lightColor: MOVIES.lightColor,
             darkColor: MOVIES.darkColor,
             cardColor: '#F7FFF7',
-            file: require('../assets/intj.png')
+            file: require('../assets/movie.png')
         },
         {
             key: 'music',
@@ -58,7 +58,7 @@ export const MatchedProfile = ({navigation, route}) => {
             lightColor: MUSIC.lightColor,
             darkColor: MUSIC.darkColor,
             cardColor: '#FFFEF0',
-            file: require('../assets/intj.png')
+            file: require('../assets/music.png')
         },
         {
             key: 'games',
@@ -66,7 +66,7 @@ export const MatchedProfile = ({navigation, route}) => {
             lightColor: GAMES.lightColor,
             darkColor: GAMES.darkColor,
             cardColor: '#FCF7FF',
-            file: require('../assets/intj.png')
+            file: require('../assets/gaming.png')
         },
         {
             key: 'food',
@@ -74,7 +74,7 @@ export const MatchedProfile = ({navigation, route}) => {
             lightColor: FOOD.lightColor,
             darkColor: FOOD.darkColor,
             cardColor: '#F7FAFF',
-            file: require('../assets/intj.png')
+            file: require('../assets/food.png')
         }
     ];
 

@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
-import { Icon } from 'react-native-elements'
 import { LinearGradient } from 'expo-linear-gradient';
-import DropDownPicker from 'react-native-dropdown-picker';
 import RNPickerSelect from 'react-native-picker-select';
 
 export const SignUp = ({navigation}) => {
